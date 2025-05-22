@@ -41,7 +41,7 @@
 ### ⚙️ 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/bilger.git
+git clone https://github.com/Handukkk/bilger.git
 cd bilger
 docker-compose up --build
 ```
