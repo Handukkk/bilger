@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test</title>
+</head>
+<body>
+    <h1 id="main-title">Uplaod (nnti ganti make react)</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput" />
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="items"></div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const fileInput = document.getElementById('fileInput');
+        const formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+        console.log(formData)
+        
+        try {
+            const response = await fetch('http://localhost:5000/ocr', {
+            method: 'POST',
+            body: formData,
+            })
+            .then(
+                response => response.json()
+            )
+            .then(data => {
+                const place = document.getElementById('items')
+                var p = document.createElement('p')
+                p.textContent = `Discount: ${data.discount != null? data.discount:0}`
+                place.appendChild(p)
+
+                data.items.forEach(element => {
+                    var p = document.createElement('p')
+                    p.textContent = `Name: ${element.name}, Qty: ${element.quantity}, Price: ${element.price}`
+                    place.appendChild(p)
+                });
+
+                var p = document.createElement('p')
+                p.textContent = `Subtotal: ${data.subtotal != null? data.subtotal:0}`
+                place.appendChild(p)
+
+                var p = document.createElement('p')
+                p.textContent = `Tax: ${data.tax != null? data.tax:0}`
+                place.appendChild(p)
+
+                var p = document.createElement('p')
+                p.textContent = `Total: ${data.total != null? data.total:0}`
+                place.appendChild(p)
+            })
+
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+        });
+    </script>
+</body>
+</html>

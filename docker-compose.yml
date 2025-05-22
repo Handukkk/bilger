@@ -1,0 +1,14 @@
+services:
+  ocr-api:
+    build: ./ocr-api/
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./ocr-api/.env
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./bilger-frontend:/usr/share/nginx/html/:ro
