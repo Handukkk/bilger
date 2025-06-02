@@ -58,7 +58,7 @@ def ocr_image():
         text = pytesseract.image_to_string(img)
 
         img = Image.open(image_path)
-        prompt = prompt = f"""
+        prompt = f"""
             Convert this invoice into a VALID JSON format with:
             - "items" (array of objects with "name", "quantity", and "price")
             - "subtotal" (number)
