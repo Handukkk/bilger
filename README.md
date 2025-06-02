@@ -43,5 +43,10 @@
 ```bash
 git clone https://github.com/Handukkk/bilger.git
 cd bilger
+```
+
+### 🐳 2. Run docker-compose command
+
+```bash
 docker-compose up --build
 ```
