@@ -32,7 +32,7 @@ def image_to_base64(image_path):
 
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify({'message': 'hello'})
+    return jsonify({'message': 'iseng bet dah'})
 
 @app.route('/ocr', methods=['POST'])
 def ocr_image():
